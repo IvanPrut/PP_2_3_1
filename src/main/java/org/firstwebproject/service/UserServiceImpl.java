@@ -1,7 +1,7 @@
 package org.firstwebproject.service;
 
 import org.firstwebproject.dao.UserDao;
-import org.firstwebproject.model.User;
+import org.firstwebproject.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,13 +19,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    public void updateUser(Long id, User user) {
+        userDao.updateUser(id, user);
     }
 
     @Override
-    public void deleteUser(User user) {
-        userDao.deleteUser(user);
+    public void deleteUser(Long id) {
+        userDao.deleteUser(id);
     }
 
     @Override
