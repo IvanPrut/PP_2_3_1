@@ -1,8 +1,8 @@
 package org.firstwebproject.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import org.firstwebproject.model.User;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import org.firstwebproject.models.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,19 +26,24 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(Long id, User user) {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        em.merge(user);
+        User userOrigin = em.find(User.class, id);
+        userOrigin.setName(user.getName());
+        userOrigin.setSurname(user.getSurname());
+        userOrigin.setEmail(user.getEmail());
+        em.merge(userOrigin);
         em.getTransaction().commit();
         em.close();
     }
 
     @Override
-    public void deleteUser(User user) {
+    public void deleteUser(Long id) {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        em.remove(user);
+        User userOrigin = em.find(User.class, id);
+        em.remove(userOrigin);
         em.getTransaction().commit();
         em.close();
     }
