@@ -1,6 +1,6 @@
-package org.firstwebproject.model;
+package org.firstwebproject.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
@@ -16,6 +16,12 @@ public class User {
 
     public User() {
 
+    }
+
+    public User(String name, String surname, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
     }
 
     public Long getId() {
